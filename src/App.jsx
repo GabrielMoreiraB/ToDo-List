@@ -1,6 +1,6 @@
 import './App.css'
 import { useState, useEffect } from 'react'
-//import { BsTrash, BSBookmarkCheck, BSBookmarkCheckFill} from 'react-icons/bs'
+import { BsTrash, BsBookmarkCheck, BsBookmarkCheckFill} from 'react-icons/bs'
 
 const API = "https://localhost:3000"
 
@@ -27,6 +27,15 @@ function App() {
 
     setTitle('');
     setTime('')
+  }
+
+  const handleDelete = (id) => {
+    setTodos((prevState) => prevState.filter(todo => todo.id !== id));
+  }
+
+  const handleEdit = (todo) => {
+    todo.done = !todo.done;
+    setTodos((prevState) => prevState.filter(e => e.id === todo.id))
   }
 
   return (
@@ -72,7 +81,12 @@ function App() {
         {todos.length === 0 && <p>Não há tarefas! 😁</p>}
         {todos.map((todo) => (
           <div className="todo" key={todo.id}>
-            <p>{todo.title}</p>
+            <h3 className={todo.done ? "todo-done" : ""}>{todo.title}</h3>
+            <p>Duração: {todo.time}</p>
+            <span onClick={() => handleEdit(todo)}>
+              {(!todo.done) ? <BsBookmarkCheck /> : <BsBookmarkCheckFill />}
+            </span>
+            <BsTrash onClick={() => handleDelete(todo.id)}/>
           </div>
         ))}
       </div>
