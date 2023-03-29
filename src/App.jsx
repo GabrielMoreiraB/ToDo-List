@@ -1,15 +1,15 @@
 import './App.css'
-import { useState, useEffect } from 'react'
+import { useState,} from 'react'
 import { BsTrash, BsBookmarkCheck, BsBookmarkCheckFill} from 'react-icons/bs'
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css';
 
-const API = "https://localhost:3000"
 
 function App() {
 
   const [title, setTitle] = useState("");
   const [time, setTime] = useState("");
-  const [todos, setTodos] = useState([]);
-  const[loading, setLoading] = useState(false);
+  const [todos, setTodos] = useState(JSON.parse(localStorage.getItem("itens")) || []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -21,27 +21,34 @@ function App() {
       done: false
     };
 
-    setTodos([...todos,todo])
+    
     console.log(todos)
-
-
+    setTodos([...todos,todo])
+    
     setTitle('');
     setTime('')
+    toast.success("Tarefa Adicionada!")
   }
+
+
+  localStorage.setItem("itens", JSON.stringify(todos));
+
 
   const handleDelete = (id) => {
     setTodos((prevState) => prevState.filter(todo => todo.id !== id));
+    localStorage.setItem("itens", JSON.stringify(todos))
   }
 
   const handleEdit = (todo) => {
     todo.done = !todo.done;
-    setTodos((prevState) => prevState.filter(e => e.id === todo.id))
+    setTodos((prevState) => prevState.map(e => e.id === todo.id ? e = todo : e))
+    localStorage.setItem("itens", JSON.stringify(todos))
   }
 
   return (
     <div className="App">
       <div className='todo-header'>
-        <h1>ToDo react</h1>
+        <h1>Just Do</h1>
       </div>
       <div className='form-todo'>
         <h2>Insira sua Próxima tarefa:</h2>
@@ -82,7 +89,7 @@ function App() {
         {todos.map((todo) => (
           <div className="todo" key={todo.id}>
             <h3 className={todo.done ? "todo-done" : ""}>{todo.title}</h3>
-            <p>Duração: {todo.time}</p>
+            <p>Duração: {todo.time}h</p>
             <span onClick={() => handleEdit(todo)}>
               {(!todo.done) ? <BsBookmarkCheck /> : <BsBookmarkCheckFill />}
             </span>
@@ -90,7 +97,9 @@ function App() {
           </div>
         ))}
       </div>
+      <ToastContainer/>
     </div>
+    
   )
 }
 
