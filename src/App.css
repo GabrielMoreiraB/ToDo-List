@@ -4,7 +4,7 @@
   background-color: #344049;
   border-radius: 5px;
   color: #ffffff;
-  box-shadow: 0px 439px 268px rgba(0, 0, 0, 0.06), 0px 202.963px 123.905px rgba(0, 0, 0, 0.0445005), 0px 116.131px 70.8953px rgba(0, 0, 0, 0.0376069), 0px 70.4906px 43.033px rgba(0, 0, 0, 0.0323969), 0px 42.4737px 25.9293px rgba(0, 0, 0, 0.0276031), 0px 23.6521px 14.4391px rgba(0, 0, 0, 0.0223931), 0px 10.1726px 6.21015px rgba(0, 0, 0, 0.0154995);
+  box-shadow: 0px 439px 268px rgba(0, 0, 0, 0.07), 0px 202.963px 123.905px rgba(0, 0, 0, 0.0745005), 0px 116.131px 70.8953px rgba(0, 0, 0, 0.0376069), 0px 70.4906px 43.033px rgba(0, 0, 0, 0.0323969), 0px 42.4737px 25.9293px rgba(0, 0, 0, 0.0776031), 0px 23.6521px 14.4391px rgba(0, 0, 0, 0.0223931), 0px 10.1726px 6.21015px rgba(0, 0, 0, 0.0154995);
 }
 
 .todo-header{
@@ -84,9 +84,16 @@
   text-align: center;
 }
 
+.list-todo p span{
+  font-size: 1.5em;
+}
+
 .todo{
   border-bottom: 1px solid #444;
   padding: 1em 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .todo h3{

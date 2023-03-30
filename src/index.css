@@ -1,6 +1,6 @@
 
 html{
-  background: radial-gradient(#FBFBFB 10%, #E8E8E8 90%);
+  background-image: url(../public/img/bg.jpg);
     color: #333;
   height: 100%;
 }
