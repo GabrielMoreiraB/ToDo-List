@@ -84,7 +84,7 @@ function App() {
         
       </div>
       <div className='list-todo'>
-        <h2>Lista ce Tarefas:</h2>
+        <h2>Lista de Tarefas:</h2>
         {todos.length === 0 && <p>Não há tarefas! <span>😴</span> </p>}
         {todos.map((todo) => (
           <div className="todo" key={todo.id}>
